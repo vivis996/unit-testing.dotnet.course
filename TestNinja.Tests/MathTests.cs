@@ -10,19 +10,20 @@ public class MathTests
     // SetUp
     // TearDown
 
-    [SetUp]
+    [SetUp] 
     public void SetUp()
     {
         this._math = new Math();
     }
 
     [Test]
-    [Ignore("Because I wanted to!")]
+    //[Ignore("Because I wanted to!")]
     public void Add_WhenCalled_ReturnTheSumsOfArguments()
     {
         var result = this._math.Add(1, 2);
 
         Assert.That(result, Is.EqualTo(3));
+        //Assert.That(this._math, Is.Not.Null);
     }
 
     [Test]
