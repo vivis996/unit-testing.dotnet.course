@@ -2,10 +2,10 @@
 
 namespace TestNinja.Tests;
 
-[TestClass]
+[TestFixture]
 public class ReservationTests
 {
-    [TestMethod]
+    [Test]
     public void CanBeCancelledBy_UserIsAdmin_ReturnsTrue()
     {
         // Arrange
@@ -15,10 +15,10 @@ public class ReservationTests
         var result = reservation.CanBeCancelledBy(new User { IsAdmin = true });
 
         // Assert
-        Assert.IsTrue(result);
+        Assert.That(result, Is.True);
     }
 
-    [TestMethod]
+    [Test]
     public void CanBeCancelledBy_SameUserCancellingTheReservation_ReturnsTrue()
     {
         var user = new User();
@@ -26,10 +26,10 @@ public class ReservationTests
 
         var result = reservation.CanBeCancelledBy(user);
 
-        Assert.IsTrue(result);
+        Assert.That(result == true);
     }
 
-    [TestMethod]
+    [Test]
     public void CanBeCancelledBy_AnotherUserCancellingReservation_ReturnsFalse()
     {
         var user = new User();
@@ -37,6 +37,6 @@ public class ReservationTests
 
         var result = reservation.CanBeCancelledBy(new User());
 
-        Assert.IsFalse(result);
+        Assert.That(result, Is.False);
     }
 }
