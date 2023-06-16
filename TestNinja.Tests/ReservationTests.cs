@@ -17,4 +17,26 @@ public class ReservationTests
         // Assert
         Assert.IsTrue(result);
     }
+
+    [TestMethod]
+    public void CanBeCancelledBy_SameUserCancellingTheReservation_ReturnsTrue()
+    {
+        var user = new User();
+        var reservation = new Reservation { MadeBy = user };
+
+        var result = reservation.CanBeCancelledBy(user);
+
+        Assert.IsTrue(result);
+    }
+
+    [TestMethod]
+    public void CanBeCancelledBy_AnotherUserCancellingReservation_ReturnsFalse()
+    {
+        var user = new User();
+        var reservation = new Reservation { MadeBy = user };
+
+        var result = reservation.CanBeCancelledBy(new User());
+
+        Assert.IsFalse(result);
+    }
 }
