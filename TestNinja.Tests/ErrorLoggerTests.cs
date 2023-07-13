@@ -20,5 +20,14 @@ public class ErrorLoggerTests
 
         Assert.That(_logger.LastError, Is.EqualTo("a"));
     }
+
+    [Test]
+    [TestCase(null)]
+    [TestCase("")]
+    [TestCase(" ")]
+    public void Log_IvalidError_ThrowArgumentNullException(string error)
+    {
+        Assert.That(() => _logger.Log(error), Throws.ArgumentNullException);
+    }
 }
 
