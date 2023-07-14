@@ -16,9 +16,9 @@ public class ErrorLoggerTests
     [Test]
     public void Log_WhenCalled_SetTheLastErrorProperty()
     {
-        _logger.Log("a");
+        this._logger.Log("a");
 
-        Assert.That(_logger.LastError, Is.EqualTo("a"));
+        Assert.That(this._logger.LastError, Is.EqualTo("a"));
     }
 
     [Test]
@@ -27,7 +27,17 @@ public class ErrorLoggerTests
     [TestCase(" ")]
     public void Log_IvalidError_ThrowArgumentNullException(string error)
     {
-        Assert.That(() => _logger.Log(error), Throws.ArgumentNullException);
+        Assert.That(() => this._logger.Log(error), Throws.ArgumentNullException);
+    }
+
+    [Test]
+    public void Log_ValidError_RaiseErrorLoggedEvent()
+    {
+        var id = Guid.Empty;
+        this._logger.ErrorLogged += (sender, args) => id = args;
+
+        this._logger.Log("a");
+
+        Assert.That(id, Is.Not.EqualTo(Guid.Empty));
     }
 }
-
