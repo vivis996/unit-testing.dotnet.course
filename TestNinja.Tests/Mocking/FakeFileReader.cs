@@ -1,6 +1,6 @@
 ﻿using TestNinja.Mocking;
 
-namespace TestNinja.Tests;
+namespace TestNinja.Tests.Mocking;
 
 public class FakeFileReader : IFileReader
 {
