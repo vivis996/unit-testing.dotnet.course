@@ -11,8 +11,7 @@ public class VideoServiceTests
     [SetUp]
     public void SetUp()
     {
-        this._service = new VideoService();
-        this._service.FileReader = new FakeFileReader();
+        this._service = new VideoService(new FakeFileReader());
     }
 
     [Test]
