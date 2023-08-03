@@ -41,6 +41,19 @@ public class Booking_OverlappingBookingsExistHelperTests
         Assert.That(result, Is.Empty);
     }
 
+    [Test]
+    public void BookingStartsBeforeAndFinishesInTheMiddleOfAnExistingBooking_ReturnExistingBookingReferences()
+    {
+        var result = BookingHelper.OverlappingBookingsExist(new Booking
+        {
+            Id = 1,
+            ArrivalDate = Before(this._existingBooking.ArrivalDate),
+            DepartureDate = After(this._existingBooking.ArrivalDate),
+        }, this._repository.Object);
+
+        Assert.That(result, Is.EqualTo(this._existingBooking.Reference));
+    }
+
     private DateTime Before(DateTime dateTime, int days = 1)
     {
         return dateTime.AddDays(-days);
