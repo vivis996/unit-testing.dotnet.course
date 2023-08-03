@@ -18,7 +18,7 @@ public class HousekeeperHelper
         this._xtraMessageBox = xtraMessageBox;
     }
 
-    public bool SendStatementEmails(DateTime statementDate)
+    public void SendStatementEmails(DateTime statementDate)
     {
         var housekeepers = this._unitOfWork.Query<Housekeeper>();
 
@@ -46,8 +46,6 @@ public class HousekeeperHelper
                     MessageBoxButtons.OK);
             }
         }
-
-        return true;
     }
 }
 
