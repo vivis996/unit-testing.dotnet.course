@@ -1,6 +1,6 @@
 ﻿using TestNinja.Fundamentals;
 
-namespace TestNinja.Tests;
+namespace TestNinja.Tests.Fundamentals;
 
 public class DemeritPointsCalculatorTests
 {

@@ -26,8 +26,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Mocking\" />
+    <None Remove="Fundamentals\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mocking\" />
+    <Folder Include="Fundamentals\" />
   </ItemGroup>
 </Project>

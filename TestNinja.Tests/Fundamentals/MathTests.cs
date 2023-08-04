@@ -1,6 +1,6 @@
 ﻿using Math = TestNinja.Fundamentals.Math;
 
-namespace TestNinja.Tests;
+namespace TestNinja.Tests.Fundamentals;
 
 [TestFixture]
 public class MathTests

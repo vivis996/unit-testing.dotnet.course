@@ -1,14 +1,14 @@
-﻿namespace TestNinja.Tests;
+﻿namespace TestNinja.Tests.Fundamentals;
 
 [TestFixture]
 public class StackTests
 {
-    private Fundamentals.Stack<string?> _stack;
+    private Stack<string?> _stack;
 
     [SetUp]
     public void SetUp()
     {
-        this._stack = new Fundamentals.Stack<string?>();
+        this._stack = new Stack<string?>();
     }
 
     [Test]
