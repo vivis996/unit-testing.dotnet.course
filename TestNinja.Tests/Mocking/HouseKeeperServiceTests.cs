@@ -79,6 +79,18 @@ public class HouseKeeperServiceTests
         VerifyEmailNotSent();
     }
 
+    [Test]
+    public void SendStatementEmails_EmailSendingFails_DisplayAMessageBox()
+    {
+        this._emailSender
+                .Setup(es => es.EmailFile(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                .Throws<Exception>();
+
+        this._service.SendStatementEmails(this._statementDate);
+
+        this._messageBox.Verify(mb => mb.Show(It.IsAny<string>(), It.IsAny<string>(), MessageBoxButtons.OK));
+    }
+
     private void VerifyEmailNotSent()
     {
         this._emailSender
