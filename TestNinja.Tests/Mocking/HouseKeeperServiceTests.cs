@@ -41,29 +41,12 @@ public class HouseKeeperServiceTests
     }
 
     [Test]
-    public void SendStatementEmails_HouseKeeperEmailIsNull_ShouldNotGenerateStatement()
+    [TestCase(null)]
+    [TestCase("")]
+    [TestCase(" ")]
+    public void SendStatementEmails_HouseKeeperEmailIsNotValid_ShouldNotGenerateStatement(string houseKeeperEmail)
     {
-        this._housekeeper.Email = null;
-
-        this._service.SendStatementEmails(this._statementDate);
-
-        this._statementGenerator.Verify(sg => sg.SaveStatement(this._housekeeper.Oid, this._housekeeper.FullName, this._statementDate), Times.Never);
-    }
-
-    [Test]
-    public void SendStatementEmails_HouseKeeperEmailIsWhiteSpace_ShouldNotGenerateStatement()
-    {
-        this._housekeeper.Email = " ";
-
-        this._service.SendStatementEmails(this._statementDate);
-
-        this._statementGenerator.Verify(sg => sg.SaveStatement(this._housekeeper.Oid, this._housekeeper.FullName, this._statementDate), Times.Never);
-    }
-
-    [Test]
-    public void SendStatementEmails_HouseKeeperEmailIsEmpty_ShouldNotGenerateStatement()
-    {
-        this._housekeeper.Email = "";
+        this._housekeeper.Email = houseKeeperEmail;
 
         this._service.SendStatementEmails(this._statementDate);
 
