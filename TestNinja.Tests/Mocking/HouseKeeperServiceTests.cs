@@ -39,5 +39,34 @@ public class HouseKeeperServiceTests
 
         this._statementGenerator.Verify(sg => sg.SaveStatement(this._housekeeper.Oid, this._housekeeper.FullName, this._statementDate));
     }
-}
 
+    [Test]
+    public void SendStatementEmails_HouseKeeperEmailIsNull_ShouldNotGenerateStatement()
+    {
+        this._housekeeper.Email = null;
+
+        this._service.SendStatementEmails(this._statementDate);
+
+        this._statementGenerator.Verify(sg => sg.SaveStatement(this._housekeeper.Oid, this._housekeeper.FullName, this._statementDate), Times.Never);
+    }
+
+    [Test]
+    public void SendStatementEmails_HouseKeeperEmailIsWhiteSpace_ShouldNotGenerateStatement()
+    {
+        this._housekeeper.Email = " ";
+
+        this._service.SendStatementEmails(this._statementDate);
+
+        this._statementGenerator.Verify(sg => sg.SaveStatement(this._housekeeper.Oid, this._housekeeper.FullName, this._statementDate), Times.Never);
+    }
+
+    [Test]
+    public void SendStatementEmails_HouseKeeperEmailIsEmpty_ShouldNotGenerateStatement()
+    {
+        this._housekeeper.Email = "";
+
+        this._service.SendStatementEmails(this._statementDate);
+
+        this._statementGenerator.Verify(sg => sg.SaveStatement(this._housekeeper.Oid, this._housekeeper.FullName, this._statementDate), Times.Never);
+    }
+}
